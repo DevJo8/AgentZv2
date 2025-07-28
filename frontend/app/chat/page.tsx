@@ -24,6 +24,7 @@ import axios from 'axios'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useAccount, useBalance, usePublicClient, useWalletClient } from 'wagmi'
 import { parseEther, formatEther } from 'viem'
+import { Copy, Check } from 'lucide-react'
 import { AgentExecutor, createReactAgent } from "langchain/agents";
 import { pull } from "langchain/hub";
 import { PromptTemplate } from "@langchain/core/prompts";
@@ -84,6 +85,7 @@ export default function ChatPage() {
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const [input, setInputState] = useState('') 
   const [isLoading2, setIsLoading] = useState(false) 
+  const [caCopied, setCaCopied] = useState(false)
   const [chatMessages, setChatMessages] = useState<ChatMessageType[]>(() => {
     if (typeof window !== 'undefined') {
       const savedMessages = localStorage.getItem('chatMessages');
@@ -111,6 +113,16 @@ export default function ChatPage() {
     setChatMessages([]);
     localStorage.removeItem('chatMessages');
   };
+
+  const copyCA = async () => {
+    try {
+      await navigator.clipboard.writeText("19YEUWUWUUWUWU")
+      setCaCopied(true)
+      setTimeout(() => setCaCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy: ', err)
+    }
+  }
 
   async function getEtherPriceFunc() {
     const url = 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd';
@@ -421,6 +433,27 @@ User Message: ${input}
             </span>
           </div>
           <div className="flex items-center gap-2">
+            {/* CA Display */}
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-2 border border-white/20">
+              <div className="text-xs text-gray-300 font-medium">CA :</div>
+              <div className="flex items-center gap-1">
+                <span className="text-xs font-mono text-blue-300 font-semibold">
+                  19YEUWUWUUWUWU
+                </span>
+                <button
+                  onClick={copyCA}
+                  className="p-1 hover:bg-white/10 rounded transition-colors"
+                  title="Copy CA"
+                >
+                  {caCopied ? (
+                    <Check className="h-3 w-3 text-green-400" />
+                  ) : (
+                    <Copy className="h-3 w-3 text-gray-400" />
+                  )}
+                </button>
+              </div>
+            </div>
+            
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
