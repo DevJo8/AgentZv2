@@ -217,15 +217,61 @@ export default function ChatPage() {
       name: "getFinancialAdvice",
       description: "Provides financial advice about a crypto coin based on the user's query. The query should be about only one coin at a time. For example: 'Should I buy ethereum today', 'Give me information and advice about BTC'.  Input format: query.",
       func: async (input: string) => {
-        const response = await axios.post('https://solbot-production-82ef.up.railway.app/analyze', {
-          user_query: input
-        }, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+        try {
+          const response = await axios.post('https://solbot-production-82ef.up.railway.app/analyze', {
+            user_query: input
+          }, {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            timeout: 30000 // 30 second timeout
+          });
+          
+          if (response.data && response.data.final_response) {
+            return JSON.stringify(response.data);
+          } else {
+            return JSON.stringify({
+              error: "No valid response from financial advisor",
+              final_response: "I apologize, but I couldn't get a proper response from the financial advisor. Please try again later."
+            });
           }
-        });
-        return JSON.stringify(response.data);
+        } catch (error: any) {
+          console.error("Financial advice error:", error);
+          
+          // Handle CORS error specifically
+          if (error.message && error.message.includes('CORS')) {
+            return JSON.stringify({
+              error: "CORS error - backend not accessible",
+              final_response: "I apologize, but there's a configuration issue with the financial advisor service. The backend is not properly configured to accept requests from this domain. Please contact support."
+            });
+          }
+          
+          if (error.code === 'ECONNABORTED') {
+            return JSON.stringify({
+              error: "Request timeout",
+              final_response: "I apologize, but the financial advisor is taking too long to respond. Please try again later."
+            });
+          }
+          
+          if (error.response?.status === 500) {
+            return JSON.stringify({
+              error: "Server error",
+              final_response: "I apologize, but there's a server error with the financial advisor. Please try again later."
+            });
+          }
+          
+          if (error.message && error.message.includes('Network Error')) {
+            return JSON.stringify({
+              error: "Network error",
+              final_response: "I apologize, but I'm having trouble connecting to the financial advisor. This might be due to a CORS configuration issue or the service being temporarily unavailable. Please try again later."
+            });
+          }
+          
+          return JSON.stringify({
+            error: "Unknown error",
+            final_response: "I apologize, but I encountered an unexpected error while trying to get financial advice. Please try again later."
+          });
+        }
       },
     }),
      new DynamicTool({
@@ -328,7 +374,8 @@ Question: {input}
       agent,
       tools,
       verbose: true,
-      maxIterations: 10,
+      maxIterations: 5,
+      returnIntermediateSteps: true,
     });
 
     const result = await agentExecutor.invoke({
@@ -338,6 +385,14 @@ Question: {input}
 
     console.log("Final Result:", result.output);
     console.log("Action Analysis:", result.intermediateSteps);
+
+    // Check if agent stopped due to max iterations
+    if (result.output === "Agent stopped due to max iterations.") {
+      return {
+        final_result: "I apologize, but I'm having trouble processing your request. This might be due to the complexity of the query or a temporary issue. Please try rephrasing your question or ask something simpler.",
+        action_analysis: ["Agent stopped due to max iterations - request too complex"]
+      };
+    }
 
     return {
       final_result: result.output,
