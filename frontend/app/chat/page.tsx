@@ -265,9 +265,7 @@ async function aiAgent(input: string) {
         for (const chat_msg of chatMessages) { chat_history += `${chat_msg.role}: ${chat_msg.content}\n`; }
   console.log("Chat History yo yo: ", chat_history);
   try {
-    let temp = await pull<PromptTemplate>("hwchase17/react");
-
-    const customPrompt = `
+    const customPrompt = PromptTemplate.fromTemplate(`
 You are an intelligent Base blockchain assistant that helps users perform operations and provide relevant information about Base blockchain. You have access to the following tools:
 
 {tools}
@@ -302,25 +300,25 @@ Important Instructions:
 
 Use the following format:
 
-User Message: The user's query or request to resolve
-Thought: Your reasoning about what needs to be done to fulfill the request
-Action: The tool to use (must be one of [{tool_names}])
-Action Input: The specific input to provide to the tool
-Observation: The result returned by the tool
-... (this Thought/Action/Action Input/Observation can repeat up to 5 times as needed)
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [getBalance, transferETH, getTransactionCost, getAccountInfo, getFinancialAdvice, getEtherPrice, DirectAnswer]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
 Thought: I now know the final answer
-Final Answer: Provide a clear, concise response to the user's original query with relevant information and results
+Final Answer: the final answer to the original input question
 
 Previous conversation history:
 ${chat_history}
 
-User Message: ${input}
-`;
+Question: ${input}
+`);
 
     const agent = await createReactAgent({
       llm,
       tools,
-      prompt: temp,
+      prompt: customPrompt,
     });
 
     const agentExecutor = new AgentExecutor({
