@@ -81,7 +81,7 @@ export default function Home() {
                   {/* CA Display */}
                   <div className="bg-black/30 hover:bg-black/40 text-white font-medium py-2 px-4 rounded-full border border-white/10 backdrop-blur-md transition-all duration-300 flex items-center gap-2 shadow-glow-sm text-sm mx-auto sm:mx-0">
                     <span className="text-indigo-100">CA :</span>
-                    <span className="text-indigo-100 font-mono">19YEUWUWUUWUWU</span>
+                    <span className="text-indigo-100 font-mono">COMING SOON</span>
                     <button
                       onClick={copyCA}
                       className="p-1 hover:bg-white/10 rounded transition-colors"
