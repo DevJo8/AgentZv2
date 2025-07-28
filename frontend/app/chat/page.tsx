@@ -434,25 +434,25 @@ User Message: ${input}
           </div>
           <div className="flex items-center gap-2">
             {/* CA Display */}
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-2 border border-white/20">
-              <div className="text-xs text-gray-300 font-medium">CA :</div>
-              <div className="flex items-center gap-1">
-                <span className="text-xs font-mono text-blue-300 font-semibold">
-                  19YEUWUWUUWUWU
-                </span>
-                <button
-                  onClick={copyCA}
-                  className="p-1 hover:bg-white/10 rounded transition-colors"
-                  title="Copy CA"
-                >
-                  {caCopied ? (
-                    <Check className="h-3 w-3 text-green-400" />
-                  ) : (
-                    <Copy className="h-3 w-3 text-gray-400" />
-                  )}
-                </button>
-              </div>
-            </div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="bg-black/30 hover:bg-black/40 text-white font-medium py-1.5 md:py-2 px-3 md:px-4 rounded-full border border-white/10 backdrop-blur-md transition-all duration-300 flex items-center gap-1.5 md:gap-2 shadow-glow-sm text-sm md:text-base"
+            >
+              <span className="text-indigo-100">CA :</span>
+              <span className="text-indigo-100 font-mono">19YEUWUWUUWUWU</span>
+              <button
+                onClick={copyCA}
+                className="p-1 hover:bg-white/10 rounded transition-colors"
+                title="Copy CA"
+              >
+                {caCopied ? (
+                  <Check className="h-3 w-3 text-green-400" />
+                ) : (
+                  <Copy className="h-3 w-3 text-indigo-300" />
+                )}
+              </button>
+            </motion.div>
             
             <motion.button
               whileHover={{ scale: 1.05 }}
