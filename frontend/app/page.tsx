@@ -26,7 +26,7 @@ export default function Home() {
 
   const copyCA = async () => {
     try {
-      await navigator.clipboard.writeText("19YEUWUWUUWUWU")
+      await navigator.clipboard.writeText("COMING SOON")
       setCaCopied(true)
       setTimeout(() => setCaCopied(false), 2000)
     } catch (err) {
