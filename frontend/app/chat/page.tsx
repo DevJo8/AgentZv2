@@ -9,8 +9,8 @@ import {
   Sparkles,
   Send,
   ExternalLink,
-  BookOpen,
 } from "lucide-react"
+import { RiTwitterXFill } from "react-icons/ri"
 import ChatMessage from "@/components/chat-message"
 import { ConversationSummaryMemory } from "langchain/memory";
 import { useChat } from "@/hooks/use-chat"
@@ -613,6 +613,25 @@ User Message: ${input}
           </form>
         </div>
 
+        {/* Social Media Icons */}
+        <div className="fixed bottom-4 md:bottom-6 right-4 md:right-6 flex flex-row gap-3 md:gap-4 z-20">
+          <a 
+            href="https://twitter.com/your_twitter" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="p-2 text-[#2596be] hover:text-white transition-all duration-300"
+          >
+            <RiTwitterXFill className="h-5 w-5" />
+          </a>
+          <a 
+            href="https://dexscreener.com/your_dex" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="p-2 text-[#2596be] hover:text-white transition-all duration-300"
+          >
+            <ExternalLink className="h-5 w-5" />
+          </a>
+        </div>
 
       </main>
     </div>

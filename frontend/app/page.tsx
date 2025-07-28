@@ -11,7 +11,8 @@ import { useAccount } from 'wagmi'
 import { useRouter } from "next/navigation"
 import { VideoBackground } from "@/components/ui/video-background"
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { Copy, Check } from "lucide-react"
+import { Twitter, ExternalLink, Copy, Check } from "lucide-react"
+import { RiTwitterXFill } from "react-icons/ri";
 import { useState } from 'react'
 
 export default function Home() {
@@ -99,6 +100,25 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Social Media Icons */}
+        <div className="fixed bottom-4 md:bottom-6 right-4 md:right-6 flex flex-row gap-3 md:gap-4 z-20">
+          <a 
+            href="https://twitter.com/your_twitter" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="p-2 text-[#2596be] hover:text-white transition-all duration-300"
+          >
+            <RiTwitterXFill className="h-5 w-5" />
+          </a>
+          <a 
+            href="https://dexscreener.com/your_dex" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="p-2 text-[#2596be] hover:text-white transition-all duration-300"
+          >
+            <ExternalLink className="h-5 w-5" />
+          </a>
+        </div>
 
       </main>
     </div>
