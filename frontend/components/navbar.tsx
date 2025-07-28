@@ -27,8 +27,8 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="bg-gradient-to-r from-violet-600 to-blue-600 p-2 rounded-xl shadow-[0_0_20px_2px_rgba(139,92,246,0.3)] transition-all duration-300 group-hover:shadow-[0_0_30px_4px_rgba(139,92,246,0.4)] flex items-center justify-center">
-                <img src="/zoragpt-icon.png" alt="ZoraGPT" className="h-5 w-5 object-contain" />
+              <div className="bg-gradient-to-r from-violet-600 to-blue-600 rounded-xl shadow-[0_0_20px_2px_rgba(139,92,246,0.3)] transition-all duration-300 group-hover:shadow-[0_0_30px_4px_rgba(139,92,246,0.4)] flex items-center justify-center overflow-hidden w-8 h-8">
+                <img src="/zoragpt-icon.png" alt="ZoraGPT" className="w-full h-full object-cover rounded-lg" />
               </div>
               <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-200 to-blue-200">
               ZoraGPT
