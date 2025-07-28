@@ -346,11 +346,28 @@ Question: {input}
       }) : []
     };
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error in aiAgent:", error);
+    
+    // Check if it's an API key error
+    if (error?.message && error.message.includes('API key')) {
+      return {
+        final_result: "I apologize, but there's an issue with the API configuration. Please check your OpenAI API key.",
+        action_analysis: ["API key configuration error"]
+      };
+    }
+    
+    // Check if it's a network error
+    if (error?.message && error.message.includes('fetch')) {
+      return {
+        final_result: "I apologize, but there's a network connection issue. Please check your internet connection and try again.",
+        action_analysis: ["Network connection error"]
+      };
+    }
+    
     return {
-      final_result: "I apologize, but I encountered an error while processing your request. Please try again or rephrase your question.",
-      action_analysis: ["An error occurred during processing"]
+      final_result: `I apologize, but I encountered an error while processing your request: ${error?.message || 'Unknown error'}. Please try again or rephrase your question.`,
+      action_analysis: [`Error: ${error?.message || 'Unknown error'}`]
     };
   }
 }
