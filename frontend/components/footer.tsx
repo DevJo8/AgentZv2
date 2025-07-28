@@ -77,7 +77,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="https://twitter.com"
+                  href="https://x.com/ZoraGPT"
                   className="text-blue-100/70 hover:text-blue-100 transition-colors duration-200 flex items-center gap-2"
                 >
                   <Twitter className="h-4 w-4" /> Twitter
