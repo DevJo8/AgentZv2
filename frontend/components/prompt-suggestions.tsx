@@ -23,11 +23,7 @@ export default function PromptSuggestions({ onSuggestionClick }: PromptSuggestio
       description: "Learn about ZoraGPT - Your Intelligent AI Assistant",
       prompt: "What is ZoraGPT?",
     },
-    {
-      title: "Should I buy ZoraGPT today?",
-      description: "Get comprehensive analysis on ZoraGPT - Revolutionary AI on Base Network",
-      prompt: "Should I buy ZoraGPT today?",
-    },
+
     {
       title: "What is the price of Ethereum today?",
       description: "Get the latest price of Ethereum",

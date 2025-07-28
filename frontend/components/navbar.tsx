@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { MessageCircle, Copy, Check } from "lucide-react"
+import { MessageCircle, Copy, Check, Sparkles } from "lucide-react"
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useAccount } from 'wagmi'
 import { useState } from 'react'
@@ -28,7 +28,7 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2 group">
               <div className="bg-gradient-to-r from-violet-600 to-blue-600 p-2 rounded-xl shadow-[0_0_20px_2px_rgba(139,92,246,0.3)] transition-all duration-300 group-hover:shadow-[0_0_30px_4px_rgba(139,92,246,0.4)]">
-                <MessageCircle className="h-5 w-5 text-white" />
+                <img src="/zoragpt-icon.png" alt="ZoraGPT" className="h-5 w-5 text-white" />
               </div>
               <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-200 to-blue-200">
               ZoraGPT

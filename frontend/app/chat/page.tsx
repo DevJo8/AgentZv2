@@ -500,7 +500,7 @@ Question: {input}
         <header className="flex items-center justify-between p-4 md:p-6 border-b border-white/[0.1] bg-slate-950/50 backdrop-blur-xl">
           <div className="flex items-center gap-2 md:gap-3">
             <div className="bg-gradient-to-r from-[#2596be]/80 to-[#2596be] p-1.5 md:p-2 rounded-full shadow-glow-sm">
-              <MessageCircle className="h-5 w-5 md:h-6 md:w-6 text-white" />
+              <img src="/zoragpt-icon.png" alt="ZoraGPT" className="h-5 w-5 md:h-6 md:w-6" />
             </div>
             <span className="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#2596be]/90 to-[#2596be]">
             ZoraGPT
@@ -571,7 +571,7 @@ Question: {input}
                   >
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="bg-gradient-to-r from-[#2596be]/80 to-[#2596bf] p-4 md:p-5 rounded-full shadow-glow-lg animate-pulse-slow">
-                        <Sparkles className="h-10 w-10 md:h-14 md:w-14 text-white" />
+                        <img src="/zoragpt-chat-icon.png" alt="ZoraGPT Chat" className="h-10 w-10 md:h-14 md:w-14" />
                       </div>
                     </div>
                   </motion.div>
