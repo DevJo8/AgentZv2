@@ -317,90 +317,39 @@ ZoraGPT is a revolutionary AI-powered chat assistant designed to be your intelli
     
     # Handle "Should I buy ZoraGPT?" question
     if "should i buy zoragpt" in user_query_lower or "should i buy zora" in user_query_lower:
-        zoragpt_response = """{"advice": "🚀 **ZoraGPT Investment Analysis - The Future of AI + Blockchain** 🚀
+        zoragpt_response = """{"advice": "**About ZoraGPT Investment**
 
-**🔥 WHY ZoraGPT is a GAME-CHANGER:**
+ZoraGPT is an innovative AI assistant project built on the Base network. Here's what you should know:
 
-**1. UNIQUE MARKET POSITION**
-ZoraGPT is the FIRST AI assistant built specifically for the Base network ecosystem. While there are many AI tools and many blockchain platforms, ZoraGPT is the ONLY one that combines:
-• Advanced AI with real-time financial analysis
-• Seamless Base network integration
-• Complete DeFi functionality
-• Professional-grade market insights
+**Project Overview:**
+- ZoraGPT is an AI-powered chat assistant designed for the Base network ecosystem
+- It provides real-time insights, strategy, and automation capabilities
+- Built on Coinbase's secure L2 infrastructure for reliability and speed
 
-**2. MASSIVE MARKET OPPORTUNITY**
-• **AI Market**: Projected to reach $1.8 trillion by 2030 (growing 37% annually)
-• **DeFi Market**: Expected to hit $232 billion by 2030
-• **Base Network**: Coinbase's L2 with 100M+ potential users
-• **Combined Potential**: ZoraGPT sits at the intersection of 3 booming markets
+**Current Status:**
+- The project is in development phase
+- Token is not yet listed on exchanges
+- This is an early-stage project with potential for growth
 
-**3. STRONG FOUNDATION & BACKING**
-✅ **Built on Base Network**: Coinbase's trusted, secure, and fast L2 infrastructure
-✅ **Institutional Support**: Backed by Coinbase's ecosystem and resources
-✅ **Technical Excellence**: State-of-the-art AI models and blockchain integration
-✅ **User Experience**: Beautiful, intuitive interface that actually works
-✅ **Real Utility**: Not just hype - provides genuine value to users
+**Key Features:**
+- AI-powered financial insights and analysis
+- Integration with Base network DeFi protocols
+- Real-time market data and strategy recommendations
+- Automated trading and portfolio management tools
 
-**4. COMPETITIVE ADVANTAGES**
-• **First-Mover Advantage**: First AI assistant on Base network
-• **Network Effects**: More users = better AI = more users
-• **Data Advantage**: Access to real-time crypto and DeFi data
-• **Integration Depth**: Deep Base network integration vs. competitors
-• **Brand Recognition**: Strong positioning in AI + crypto space
+**Important Considerations:**
+- Early-stage projects carry higher risk and potential reward
+- Token availability and listing details are not yet announced
+- Always conduct thorough research before any investment decision
+- Consider your risk tolerance and investment timeline
 
-**5. REVENUE POTENTIAL**
-• **Subscription Models**: Premium AI features and advanced analytics
-• **Transaction Fees**: Revenue from DeFi operations and trades
-• **Data Services**: Market insights and analytics for institutions
-• **Partnerships**: Integration fees from other Base ecosystem projects
-• **Token Economics**: Native token utility and governance
+**Next Steps:**
+- Follow the project's official channels for updates
+- Wait for official token launch and listing announcements
+- Research the team, technology, and market potential
+- Consider the broader Base network ecosystem growth
 
-**6. GROWTH CATALYSTS**
-🚀 **Base Network Growth**: As Base grows, ZoraGPT grows exponentially
-🚀 **AI Adoption**: Increasing demand for AI-powered financial tools
-🚀 **DeFi Expansion**: More DeFi protocols = more use cases
-🚀 **Institutional Adoption**: Professional traders and institutions
-🚀 **Global Expansion**: International markets and languages
-
-**7. RISK ASSESSMENT**
-⚠️ **Early Stage**: Higher risk, but higher potential returns
-⚠️ **Market Volatility**: Crypto markets are volatile (but this creates opportunities)
-⚠️ **Competition**: Other projects may emerge (but ZoraGPT has first-mover advantage)
-⚠️ **Regulatory**: Crypto regulations evolving (but Base network compliance helps)
-
-**8. INVESTMENT THESIS**
-**BULLISH CASE:**
-• ZoraGPT becomes the go-to AI assistant for Base network users
-• Captures 10% of Base network's 100M+ potential users
-• Generates $100M+ annual revenue from subscriptions and fees
-• Token value increases 50-100x from current levels
-
-**CONSERVATIVE CASE:**
-• Steady growth with Base network adoption
-• Captures 1% of market with solid revenue generation
-• Token value increases 10-20x from current levels
-
-**9. TIMING IS PERFECT**
-• **AI Revolution**: ChatGPT, Claude, and other AI tools have proven the market
-• **Crypto Recovery**: Market sentiment improving, institutional adoption increasing
-• **Base Network Momentum**: Growing rapidly with Coinbase's support
-• **DeFi Renaissance**: New protocols and use cases emerging daily
-
-**10. BOTTOM LINE**
-ZoraGPT represents a rare opportunity to invest in a project that combines:
-• **Proven Technology** (AI + Blockchain)
-• **Massive Market** (AI + Crypto + DeFi)
-• **Strong Backing** (Base network ecosystem)
-• **Real Utility** (Actual product that works)
-• **First-Mover Advantage** (Unique positioning)
-
-**🎯 INVESTMENT RECOMMENDATION:**
-For investors with a 2-5 year horizon who believe in the future of AI + blockchain, ZoraGPT represents a compelling opportunity. The combination of first-mover advantage, strong technical foundation, and massive market potential makes this a high-conviction investment.
-
-**💰 POSITION SIZING:**
-Consider allocating 5-15% of your crypto portfolio to ZoraGPT, depending on your risk tolerance and conviction level.
-
-*This analysis is for educational purposes. Always do your own research and consider your risk tolerance before making investment decisions.*"}"""
+Remember: This information is for educational purposes only. Always do your own research and consider consulting with a financial advisor before making investment decisions."}"""
         
         return {"final_response": [type("Obj", (), {"content": zoragpt_response})()]}
     
