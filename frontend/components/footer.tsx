@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2">
               <MessageCircle className="h-6 w-6 text-violet-500" />
-              <span className="text-xl font-bold text-white">GAIA</span>
+              <span className="text-xl font-bold text-white">ZoraGPT</span>
             </Link>
             <p className="mt-4 text-blue-100/70">Your AI assistant for insights and productivity.</p>
           </div>
@@ -88,7 +88,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/[0.1] text-center text-blue-100/70">
-          <p>© {new Date().getFullYear()} GAIA. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} ZoraGPT. All rights reserved.</p>
         </div>
       </div>
     </footer>

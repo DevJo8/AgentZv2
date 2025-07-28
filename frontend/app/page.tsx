@@ -36,10 +36,10 @@ export default function Home() {
             <div className="w-full md:w-1/2 ml-0">
               <div className="text-center">
                 <h1 className="text-3xl sm:text-4xl md:text-7xl font-bold tracking-tight mb-4 md:mb-8 text-[#2596be]">
-                  GAIA{" "}
+                  ZoraGPT{" "}
                 </h1>
                 <p className="mt-4 md:mt-6 text-lg md:text-xl text-[#2596be] max-w-2xl mx-auto leading-relaxed px-4">
-                  CHAT WITH GAIA, YOUR INTELLIGENT ASSISTANT FOR REAL-TIME INSHIGHTS, STRATEGY, AND AUTOMATION
+                  CHAT WITH ZoraGPT, YOUR INTELLIGENT ASSISTANT FOR REAL-TIME INSHIGHTS, STRATEGY, AND AUTOMATION
                 </p>
 
                 {/* Enhanced CTA buttons */}

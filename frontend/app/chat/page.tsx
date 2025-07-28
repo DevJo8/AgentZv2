@@ -817,7 +817,7 @@ Example of action analysis:
               <MessageCircle className="h-5 w-5 md:h-6 md:w-6 text-white" />
             </div>
             <span className="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#2596be]/90 to-[#2596be]">
-            GAIA
+            ZoraGPT
             </span>
           </div>
           <div className="flex items-center gap-2">

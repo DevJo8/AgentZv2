@@ -53,7 +53,7 @@ export default function ChatMessage({ role, content, isLast = false }: ChatMessa
 
         <div className="relative z-10">
           <div className={cn("font-medium mb-1 text-sm", role === "assistant" ? "text-violet-200" : "text-blue-200")}>
-            {role === "assistant" ? "GAIA" : "You"}
+            {role === "assistant" ? "ZoraGPT" : "You"}
           </div>
           <div className="prose prose-invert max-w-none text-white/90 leading-relaxed">
             {typeof content === 'string' ? content : content}

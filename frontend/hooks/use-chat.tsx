@@ -58,7 +58,7 @@ export function useChat() {
     const input = userInput.toLowerCase()
 
     if (input.includes("hello") || input.includes("hi")) {
-      return "Hello! I'm GAIA, your AI assistant. How can I help you today? I can provide information, answer questions, or assist with various tasks."
+      return "Hello! I'm ZoraGPT, your AI assistant. How can I help you today? I can provide information, answer questions, or assist with various tasks."
     } else if (input.includes("help")) {
       return "I'm here to help! You can ask me questions, request information, or get assistance with various tasks. Just let me know what you need, and I'll do my best to assist you."
     } else if (input.includes("feature") || input.includes("do")) {

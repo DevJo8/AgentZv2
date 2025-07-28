@@ -9,8 +9,8 @@ import { ClientWalletProvider } from "@/components/wallet-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "GAIA - Your AI Assistant",
-  description: "Chat with GAIA to discover insights and get assistance",
+  title: "ZoraGPT - Your AI Assistant",
+  description: "Chat with ZoraGPT to discover insights and get assistance",
   generator: 'v0.dev'
 }
 
