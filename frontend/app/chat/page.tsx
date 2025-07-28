@@ -282,6 +282,7 @@ Important Instructions:
 !!! If user asks for financial advice about multiple coins, First call this tool querying about first coin then second coin and so on.
 !!! Dont call this tool multiple times. If output is already available about a coin then don't call this tool again for that coin.
 !!! if user asks about price of ethereum please call getEtherPrice tool.
+!!! IMPORTANT: For questions like "Should I buy Ethereum today?", use getFinancialAdvice tool with the exact question.
 
 ## Most important:
 !!! Dont call any tool multiple times. or keep calling it continuosly. If a tool is called once learn its output or move to the next step. 
@@ -327,7 +328,7 @@ Question: {input}
       agent,
       tools,
       verbose: true,
-      maxIterations: 5,
+      maxIterations: 10,
     });
 
     const result = await agentExecutor.invoke({
