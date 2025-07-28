@@ -11,14 +11,27 @@ import { useAccount } from 'wagmi'
 import { useRouter } from "next/navigation"
 import { VideoBackground } from "@/components/ui/video-background"
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { Twitter, BookOpen, ExternalLink } from "lucide-react"
+import { Twitter, BookOpen, ExternalLink, Copy, Check } from "lucide-react"
 import { RiTwitterXFill } from "react-icons/ri";
+import { useState } from 'react'
 
 export default function Home() {
   const { isConnected } = useAccount()
   const router = useRouter()
+  const [caCopied, setCaCopied] = useState(false)
+  
   if(isConnected){
     router.push("/chat")
+  }
+
+  const copyCA = async () => {
+    try {
+      await navigator.clipboard.writeText("19YEUWUWUUWUWU")
+      setCaCopied(true)
+      setTimeout(() => setCaCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy: ', err)
+    }
   }
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -63,6 +76,23 @@ export default function Home() {
                   </Button> */}
                   <div className="bg-transparent border-1xl mx-auto sm:mx-0" style={{ border: '1px solid #2596be', borderRadius: '0.5rem' }} >
                     <ConnectButton />
+                  </div>
+                  
+                  {/* CA Display */}
+                  <div className="bg-black/30 hover:bg-black/40 text-white font-medium py-2 px-4 rounded-full border border-white/10 backdrop-blur-md transition-all duration-300 flex items-center gap-2 shadow-glow-sm text-sm mx-auto sm:mx-0">
+                    <span className="text-indigo-100">CA :</span>
+                    <span className="text-indigo-100 font-mono">19YEUWUWUUWUWU</span>
+                    <button
+                      onClick={copyCA}
+                      className="p-1 hover:bg-white/10 rounded transition-colors"
+                      title="Copy CA"
+                    >
+                      {caCopied ? (
+                        <Check className="h-3 w-3 text-green-400" />
+                      ) : (
+                        <Copy className="h-3 w-3 text-indigo-300" />
+                      )}
+                    </button>
                   </div>
                 </div>
               </div>
