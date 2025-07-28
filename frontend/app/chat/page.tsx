@@ -499,7 +499,7 @@ Question: {input}
         {/* Header */}
         <header className="flex items-center justify-between p-4 md:p-6 border-b border-white/[0.1] bg-slate-950/50 backdrop-blur-xl">
           <div className="flex items-center gap-2 md:gap-3">
-            <div className="bg-gradient-to-r from-[#2596be]/80 to-[#2596be] rounded-full shadow-glow-sm flex items-center justify-center overflow-hidden w-8 h-8 md:w-10 md:h-10">
+            <div className="bg-black rounded-full shadow-glow-sm flex items-center justify-center overflow-hidden w-8 h-8 md:w-10 md:h-10">
               <img src="/zoragpt-icon.png" alt="ZoraGPT" className="w-full h-full object-cover rounded-full" />
             </div>
             <span className="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#2596be]/90 to-[#2596be]">
@@ -570,7 +570,7 @@ Question: {input}
                     className="relative w-24 h-24 md:w-32 md:h-32 mx-auto"
                   >
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="bg-gradient-to-r from-[#2596be]/80 to-[#2596bf] rounded-full shadow-glow-lg animate-pulse-slow flex items-center justify-center overflow-hidden w-20 h-20 md:w-24 md:h-24">
+                      <div className="bg-black rounded-full shadow-glow-lg animate-pulse-slow flex items-center justify-center overflow-hidden w-20 h-20 md:w-24 md:h-24">
                         <img src="/zoragpt-chat-icon.png" alt="ZoraGPT Chat" className="w-full h-full object-cover rounded-full" />
                       </div>
                     </div>
