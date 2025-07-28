@@ -116,7 +116,7 @@ export default function ChatPage() {
 
   const copyCA = async () => {
     try {
-      await navigator.clipboard.writeText("COMING SOON")
+      await navigator.clipboard.writeText("0xE7b9d32d4951048bD462995cFa9593B465b110f4")
       setCaCopied(true)
       setTimeout(() => setCaCopied(false), 2000)
     } catch (err) {
@@ -514,7 +514,7 @@ Question: {input}
               className="bg-black/30 hover:bg-black/40 text-white font-medium py-1.5 md:py-2 px-3 md:px-4 rounded-full border border-white/10 backdrop-blur-md transition-all duration-300 flex items-center gap-1.5 md:gap-2 shadow-glow-sm text-sm md:text-base"
             >
               <span className="text-indigo-100">CA :</span>
-              <span className="text-indigo-100 font-mono">COMING SOON</span>
+              <span className="text-indigo-100 font-mono">0xE7b9d32d4951048bD462995cFa9593B465b110f4</span>
               <button
                 onClick={copyCA}
                 className="p-1 hover:bg-white/10 rounded transition-colors"
@@ -699,8 +699,8 @@ Question: {input}
             <RiTwitterXFill className="h-5 w-5" />
           </a>
           <a 
-            href="https://dexscreener.com/your_dex" 
-            target="_blank" 
+            href="https://dexscreener.com/base/0xE7b9d32d4951048bD462995cFa9593B465b110f4" 
+            target="https://dexscreener.com/base/0xE7b9d32d4951048bD462995cFa9593B465b110f4" 
             rel="noopener noreferrer"
             className="p-2 text-[#2596be] hover:text-white transition-all duration-300"
           >
