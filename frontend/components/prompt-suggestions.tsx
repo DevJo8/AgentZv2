@@ -19,9 +19,9 @@ export default function PromptSuggestions({ onSuggestionClick }: PromptSuggestio
       prompt: "transfer 0.1 eth to wallet address ",
     },
     {
-      title: "Should I buy Ethereum today?",
-      description: "Get the latest news and analysis on Ethereum",
-      prompt: "Should I buy Ethereum today?",
+      title: "Should I buy ZoraGPT today?",
+      description: "Get comprehensive analysis on ZoraGPT - Revolutionary AI on Base Network",
+      prompt: "Should I buy ZoraGPT today?",
     },
     {
       title: "What is the price of Ethereum today?",

@@ -271,6 +271,44 @@ def ticker_check(state: AppState):
 
 def final_answer(state: AppState):
     print("Final State reached")
+    
+    # Check if user is asking about ZoraGPT specifically
+    user_query_lower = state["user_query"].lower()
+    if "zoragpt" in user_query_lower or "zora" in user_query_lower:
+        zoragpt_response = """{"advice": "🚀 **ZoraGPT Analysis - Revolutionary AI on Base Network** 🚀
+
+**What is ZoraGPT?**
+ZoraGPT is a cutting-edge AI chat assistant built on the Base network (Coinbase's L2 solution). It's not just another chatbot - it's a comprehensive financial advisor, blockchain assistant, and AI companion that leverages the power of decentralized technology.
+
+**Why ZoraGPT is Special:**
+• **Built on Base Network**: Leverages Coinbase's secure, fast, and low-cost L2 infrastructure
+• **AI-Powered Financial Analysis**: Provides real-time crypto insights, market analysis, and investment guidance
+• **Blockchain Integration**: Seamlessly interacts with Base network for transactions, balance checks, and DeFi operations
+• **Advanced AI Technology**: Uses state-of-the-art language models for intelligent conversations
+• **User-Friendly Interface**: Beautiful, intuitive chat interface with real-time responses
+
+**Market Potential:**
+The AI + Blockchain sector is experiencing explosive growth. With Base network's backing from Coinbase and the increasing demand for AI-powered financial tools, ZoraGPT represents a unique intersection of two booming markets.
+
+**Investment Considerations:**
+✅ **Strong Foundation**: Built on Base network with Coinbase's support
+✅ **Growing AI Market**: AI sector projected to reach $1.8 trillion by 2030
+✅ **DeFi Integration**: Seamless blockchain functionality
+✅ **User Adoption**: Increasing demand for AI financial assistants
+✅ **Technical Innovation**: Advanced AI with blockchain capabilities
+
+**Risk Factors:**
+⚠️ **Early Stage**: Project is in development phase
+⚠️ **Market Volatility**: Crypto markets are inherently volatile
+⚠️ **Competition**: Other AI projects may emerge
+
+**Bottom Line:**
+ZoraGPT represents an innovative fusion of AI and blockchain technology on a robust, well-supported network. For investors interested in the future of AI-powered financial services and the Base ecosystem, it's worth keeping a close eye on this project's development and adoption metrics.
+
+*This analysis is for educational purposes. Always do your own research and consider your risk tolerance before making investment decisions.*"}"""
+        
+        return {"final_response": [type("Obj", (), {"content": zoragpt_response})()]}
+    
     if ticker_check(state) == "no":
         print("I am here at no")
         prompt = f"""You are a knowledgeable financial information provider with expertise in cryptocurrency markets, investments, and financial analysis. Your role is to provide educational information, market analysis, and insights to help users make informed decisions.
