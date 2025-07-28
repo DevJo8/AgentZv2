@@ -123,9 +123,14 @@ M2 money supply history:
 12 weeks 50% level: {weeks_12_50_percent}
 26 weeks 50% level: {weeks_26_50_percent}
 
-Predict the next 4 weekly prices based on the data. Put the predictions on separate line.
-How certain are you of your predictions? Use a number between 0 (not certain at all) to 10 (sure thing).
-What is the overall trend outlook? Explain your predictions in 1-3 sentences.
+IMPORTANT: Do NOT provide specific price predictions. Instead, analyze:
+- Current market trends and patterns
+- Technical indicators and their implications
+- Support and resistance levels
+- Market sentiment indicators
+- Factors that could influence future price movements
+
+What is the overall trend outlook? Explain the current market conditions and what factors to watch in 1-3 sentences.
 
 When creating your answer, focus on answering the user query:
 {state["user_query"]}
@@ -268,18 +273,24 @@ def final_answer(state: AppState):
     print("Final State reached")
     if ticker_check(state) == "no":
         print("I am here at no")
-        prompt = f"""You are an expert financial advisor with deep expertise in personal finance, investments, budgeting, taxation, and financial planning. Your goal is to provide precise, actionable, and reliable advice tailored to users' specific financial situations. Ensure your answers are accurate and relevant.
+        prompt = f"""You are a knowledgeable financial information provider with expertise in cryptocurrency markets, investments, and financial analysis. Your role is to provide educational information, market analysis, and insights to help users make informed decisions.
 
-        If you do not know the answer to a question or if the query is unrelated to your expertise, humbly deny it and explain that you cannot provide an answer in that case. When providing advice, clearly communicate any risks, uncertainties, or potential downsides involved to help users make informed decisions. Always strive to answer the user's query in a clear, professional, and trustworthy manner.
-        
-        IMPORTANT: Always respond in the following JSON format:
-        {{"advice": "<your advice or disclaimer here>"}}
-        If you cannot answer, provide a disclaimer in the same JSON format.
+IMPORTANT: You should NOT provide direct financial advice like "buy" or "sell" recommendations. Instead, provide:
+- Educational information about the cryptocurrency
+- Market analysis and trends
+- Factors to consider when making investment decisions
+- Risks and opportunities
+- General market insights
+
+When providing information, clearly communicate any risks, uncertainties, or potential downsides involved to help users make informed decisions. Always strive to answer the user's query in a clear, professional, and educational manner.
+
+IMPORTANT: Always respond in the following JSON format:
+{{"advice": "<your educational information and analysis here>"}}
         """
     else:
         print("hey we are here")
         prompt = f"""
-        You are an expert financial advisor with deep expertise in personal finance, investments, budgeting, taxation, and financial planning. Your goal is to provide precise, actionable, and reliable advice tailored to users' specific financial situations. Ensure your answers are accurate and relevant.
+        You are a knowledgeable financial information provider with expertise in cryptocurrency markets, investments, and financial analysis. Your role is to provide educational information, market analysis, and insights to help users make informed decisions.
 
 Additionally, there are pre-generated reports stored in variables that you should refer to when answering the user's query:
     •   News Analyst Report: {state["news_analyst_report"]}
@@ -288,11 +299,17 @@ Additionally, there are pre-generated reports stored in variables that you shoul
 
 Refer to these reports, if available, to ensure your responses are well-informed and data-driven.
 
-If you do not know the answer to a question, if the query is unrelated to your expertise, or if there is insufficient information to provide an informed response, humbly deny it and explain why. When giving advice, always clearly communicate any risks, uncertainties, or potential downsides involved to help users make informed decisions. Strive to deliver clear, professional, and trustworthy responses to every query.
+IMPORTANT: You should NOT provide direct financial advice like "buy" or "sell" recommendations. Instead, provide:
+- Educational information about the cryptocurrency
+- Market analysis and trends based on the reports
+- Factors to consider when making investment decisions
+- Risks and opportunities
+- General market insights
+
+When providing information, clearly communicate any risks, uncertainties, or potential downsides involved to help users make informed decisions. Strive to deliver clear, professional, and educational responses to every query.
 
 IMPORTANT: Always respond in the following JSON format:
-{{"advice": "<your advice or disclaimer here>"}}
-If you cannot answer, provide a disclaimer in the same JSON format.
+{{"advice": "<your educational information and analysis here>"}}
         """
 
     sys_message = SystemMessage(content=prompt)
