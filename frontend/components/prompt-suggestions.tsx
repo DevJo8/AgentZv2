@@ -19,6 +19,11 @@ export default function PromptSuggestions({ onSuggestionClick }: PromptSuggestio
       prompt: "transfer 0.1 eth to wallet address ",
     },
     {
+      title: "What is ZoraGPT?",
+      description: "Learn about ZoraGPT - Your Intelligent AI Assistant",
+      prompt: "What is ZoraGPT?",
+    },
+    {
       title: "Should I buy ZoraGPT today?",
       description: "Get comprehensive analysis on ZoraGPT - Revolutionary AI on Base Network",
       prompt: "Should I buy ZoraGPT today?",

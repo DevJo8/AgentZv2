@@ -274,7 +274,49 @@ def final_answer(state: AppState):
     
     # Check if user is asking about ZoraGPT specifically
     user_query_lower = state["user_query"].lower()
-    if "zoragpt" in user_query_lower or "zora" in user_query_lower:
+    
+    # Handle "What is ZoraGPT?" question
+    if "what is zoragpt" in user_query_lower or "what is zora" in user_query_lower:
+        zoragpt_info_response = """{"advice": "🤖 **ZoraGPT - Your Intelligent AI Assistant** 🤖
+
+**What is ZoraGPT?**
+ZoraGPT is a revolutionary AI-powered chat assistant designed to be your intelligent companion for real-time insights, strategic analysis, and automated assistance. Built on the cutting-edge Base network (Coinbase's Layer 2 solution), ZoraGPT combines the power of advanced artificial intelligence with blockchain technology to deliver an unparalleled user experience.
+
+**Core Capabilities:**
+🎯 **Real-Time Insights**: Get instant, data-driven insights about cryptocurrency markets, financial trends, and investment opportunities
+📊 **Strategic Analysis**: Receive comprehensive market analysis, technical indicators, and strategic recommendations
+⚡ **Automation**: Seamlessly execute blockchain transactions, check wallet balances, and perform DeFi operations
+💬 **Intelligent Conversations**: Engage in natural, context-aware conversations about finance, technology, and more
+🔗 **Blockchain Integration**: Direct interaction with the Base network for secure, fast, and cost-effective transactions
+
+**Key Features:**
+• **AI-Powered Financial Advisor**: Advanced algorithms provide market analysis and investment insights
+• **Blockchain Assistant**: Complete integration with Base network for crypto operations
+• **Real-Time Data**: Live market data, price feeds, and news analysis
+• **User-Friendly Interface**: Beautiful, intuitive chat interface with instant responses
+• **Secure & Reliable**: Built on Coinbase's trusted infrastructure
+
+**Why Choose ZoraGPT?**
+🚀 **Innovation**: First-of-its-kind AI assistant on Base network
+🔒 **Security**: Leverages Coinbase's secure L2 infrastructure
+⚡ **Speed**: Lightning-fast responses and transaction processing
+💰 **Cost-Effective**: Low transaction fees on Base network
+🌐 **Accessibility**: Available 24/7 for all your AI assistance needs
+
+**Perfect For:**
+• Crypto enthusiasts seeking market insights
+• Investors looking for strategic analysis
+• DeFi users wanting seamless blockchain integration
+• Anyone interested in AI-powered financial assistance
+
+**Experience the Future of AI + Blockchain Today!** 🚀
+
+*ZoraGPT - Where Intelligence Meets Innovation*"}"""
+        
+        return {"final_response": [type("Obj", (), {"content": zoragpt_info_response})()]}
+    
+    # Handle "Should I buy ZoraGPT?" question
+    if "should i buy zoragpt" in user_query_lower or "should i buy zora" in user_query_lower:
         zoragpt_response = """{"advice": "🚀 **ZoraGPT Analysis - Revolutionary AI on Base Network** 🚀
 
 **What is ZoraGPT?**
