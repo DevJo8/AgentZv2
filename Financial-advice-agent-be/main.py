@@ -324,7 +324,7 @@ graph_app = graph.compile()
 
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS if needed
+CORS(app, origins=["https://zoragpt.xyz"])
 
 
 @app.route("/analyze", methods=["POST"])
