@@ -256,21 +256,34 @@ def final_answer(state: AppState):
         You are an expert financial advisor with deep expertise in personal finance, investments, budgeting, taxation, and financial planning. Your goal is to provide precise, actionable, and reliable advice tailored to users' specific financial situations. Ensure your answers are accurate and relevant.
 
 Additionally, there are pre-generated reports stored in variables that you should refer to when answering the user's query:
-	•	News Analyst Report: {state["news_analyst_report"]}
-	•	Price Analyst Report: {state["price_analyst_report"]}
-	•	Financial Report: {state["final_report"]}
+    •   News Analyst Report: {state["news_analyst_report"]}
+    •   Price Analyst Report: {state["price_analyst_report"]}
+    •   Financial Report: {state["final_report"]}
 
 Refer to these reports, if available, to ensure your responses are well-informed and data-driven.
 
 If you do not know the answer to a question, if the query is unrelated to your expertise, or if there is insufficient information to provide an informed response, humbly deny it and explain why. When giving advice, always clearly communicate any risks, uncertainties, or potential downsides involved to help users make informed decisions. Strive to deliver clear, professional, and trustworthy responses to every query.
-        
+
+IMPORTANT: Always respond in the following JSON format:
+{"advice": "<your advice or disclaimer here>"}
+If you cannot answer, provide a disclaimer in the same JSON format.
         """
 
     sys_message = SystemMessage(content=prompt)
 
     result = [llm.invoke([sys_message] + [HumanMessage(state["user_query"])])]
 
-    return {"final_response": (result)}
+    # Try to parse the output as JSON, fallback to raw content if failed
+    import json
+    advice = None
+    try:
+        content = result[-1].content
+        advice_json = json.loads(content)
+        advice = advice_json.get("advice", content)
+    except Exception:
+        advice = result[-1].content
+
+    return {"final_response": [type("Obj", (), {"content": advice})()]}
 
 
 graph.add_node("ticker_extractor", ticker_extractor)
