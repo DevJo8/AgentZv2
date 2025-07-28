@@ -339,9 +339,9 @@ User Message: ${input}
 
     return {
       final_result: result.output,
-      action_analysis: result.intermediateSteps.map((step: any) => {
+      action_analysis: result.intermediateSteps ? result.intermediateSteps.map((step: any) => {
         return `Action: ${step.action.tool}\nInput: ${step.action.toolInput}\nOutput: ${step.observation}`;
-      })
+      }) : []
     };
 
   } catch (error) {
@@ -399,7 +399,7 @@ User Message: ${input}
         id: Date.now() + 1,
         role: 'assistant',
         content: response.final_result,
-        actionAnalysis: response.action_analysis.join('\n')
+        actionAnalysis: response.action_analysis && response.action_analysis.length > 0 ? response.action_analysis.join('\n') : undefined
       };
       setChatMessages((prev) => [...prev, robotMessage]);
     } catch (error) {
