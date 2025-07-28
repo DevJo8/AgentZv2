@@ -7,17 +7,17 @@
 // import Image from "next/image"
 // import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card"
 // import Link from "next/link"
-import { useWallet } from "@solana/wallet-adapter-react"
+import { useAccount } from 'wagmi'
 import { useRouter } from "next/navigation"
 import { VideoBackground } from "@/components/ui/video-background"
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Twitter, BookOpen, ExternalLink } from "lucide-react"
 import { RiTwitterXFill } from "react-icons/ri";
 
 export default function Home() {
-  const { connected } = useWallet()
+  const { isConnected } = useAccount()
   const router = useRouter()
-  if(connected){
+  if(isConnected){
     router.push("/chat")
   }
   return (
@@ -62,7 +62,7 @@ export default function Home() {
                     Learn More
                   </Button> */}
                   <div className="bg-transparent border-1xl mx-auto sm:mx-0" style={{ border: '1px solid #2596be', borderRadius: '0.5rem' }} >
-                    <WalletMultiButton style={{ backgroundColor: '#0c1434', color: '#2596be', border: '1px solid #2596be', borderRadius: '0.5rem' }} />
+                    <ConnectButton />
                   </div>
                 </div>
               </div>

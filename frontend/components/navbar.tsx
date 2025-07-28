@@ -3,8 +3,8 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { MessageCircle } from "lucide-react"
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
-import { useWallet } from "@solana/wallet-adapter-react"
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+
 export default function Navbar() {
 
   return (
@@ -29,11 +29,11 @@ export default function Navbar() {
             <Link href="/community" className="text-blue-100/70 hover:text-blue-100 transition-colors duration-200">
               Community
             </Link>
-            <WalletMultiButton className="!bg-indigo-600 hover:!bg-indigo-700 !rounded-full z-20" />
+            <ConnectButton />
           </div>
 
           <div className="md:hidden">
-          <WalletMultiButton className="!bg-indigo-600 hover:!bg-indigo-700 !rounded-full" />
+            <ConnectButton />
           </div>
         </div>
       </div>
