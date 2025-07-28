@@ -18,39 +18,54 @@ def search(keyword: str, max_results=100) -> pd.DataFrame:
 def get_price_data(
     ticker: Ticker, time_frame: TimeFrame = TimeFrame.DAILY
 ) -> pd.DataFrame:
-    # print(f"ticker is {ticker.name}")
-    # print("name of ticker is" + ticker.name)
-    df = obb.obb.crypto.price.historical(
-        symbol=f"{ticker.name}USD", start_date="2010-01-01"
-    )
-    df["date"] = pd.to_datetime(df.index)
-    df["ticker"] = ticker.name
-    df = df[["date", "open", "high", "low", "close", "volume"]].set_index("date")
-    if time_frame == TimeFrame.DAILY:
-        return df
+    try:
+        # print(f"ticker is {ticker.name}")
+        # print("name of ticker is" + ticker.name)
+        df = obb.obb.crypto.price.historical(
+            symbol=f"{ticker.name}USD", start_date="2010-01-01"
+        )
+        df["date"] = pd.to_datetime(df.index)
+        df["ticker"] = ticker.name
+        df = df[["date", "open", "high", "low", "close", "volume"]].set_index("date")
+        if time_frame == TimeFrame.DAILY:
+            return df
 
-    interval = "W" if time_frame == TimeFrame.WEEKLY else "M"
-    return df.resample(interval).agg(
-        {"high": "max", "low": "min", "close": "last", "volume": "sum"}
-    )
+        interval = "W" if time_frame == TimeFrame.WEEKLY else "M"
+        return df.resample(interval).agg(
+            {"high": "max", "low": "min", "close": "last", "volume": "sum"}
+        )
+    except Exception as e:
+        print(f"Error getting price data for {ticker.name}: {e}")
+        # Return empty DataFrame with expected columns
+        return pd.DataFrame(columns=["open", "high", "low", "close", "volume"])
 
 
 def get_news_data(ticker: Ticker, max_articles_per_day: int = 5) -> pd.DataFrame:
-    crypto_news_df = search(keyword="Cryptocurrency")
-    crypto_news_df["ticker"] = None
-    currency_news_df = search(keyword=top_crypto_dict[ticker.name])
-    currency_news_df["ticker"] = ticker.name
-    df = pd.concat([crypto_news_df, currency_news_df], axis=0)
-    df = df.sort_values(by="date").reset_index(drop=True)
-    return df
+    try:
+        crypto_news_df = search(keyword="Cryptocurrency")
+        crypto_news_df["ticker"] = None
+        currency_news_df = search(keyword=top_crypto_dict[ticker.name])
+        currency_news_df["ticker"] = ticker.name
+        df = pd.concat([crypto_news_df, currency_news_df], axis=0)
+        df = df.sort_values(by="date").reset_index(drop=True)
+        return df
+    except Exception as e:
+        print(f"Error getting news data for {ticker.name}: {e}")
+        # Return empty DataFrame with expected columns
+        return pd.DataFrame(columns=["date", "title", "body", "ticker"])
 
 
 def get_money_supply() -> pd.DataFrame:
-    money_df = obb.obb.economy.money_measures(start_date="2010-01-01")
-    money_df.month = pd.to_datetime(money_df.month)
-    money_df = money_df[["month", "M1", "M2"]]
-    money_df.columns = ["date", "m1", "m2"]
-    return money_df[["date", "m1", "m2"]].set_index("date")
+    try:
+        money_df = obb.obb.economy.money_measures(start_date="2010-01-01")
+        money_df.month = pd.to_datetime(money_df.month)
+        money_df = money_df[["month", "M1", "M2"]]
+        money_df.columns = ["date", "m1", "m2"]
+        return money_df[["date", "m1", "m2"]].set_index("date")
+    except Exception as e:
+        print(f"Error getting money supply data: {e}")
+        # Return empty DataFrame with expected columns
+        return pd.DataFrame(columns=["date", "m1", "m2"]).set_index("date")
 
 
 def calculate_rsi(data, periods=14):

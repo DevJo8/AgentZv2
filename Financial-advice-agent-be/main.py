@@ -1,5 +1,5 @@
 import os
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import textwrap
@@ -11,27 +11,34 @@ from duckduckgo_search import DDGS
 from langgraph.prebuilt import tools_condition, ToolNode
 import warnings
 from PIL import Image
-import os
 
 warnings.filterwarnings("ignore")
 
-# load_dotenv(override=True)
+load_dotenv(override=True)
 
 from utils import *
 from consts import *
 from classes import *
 
-MODEL = "meta-llama/llama-guard-4-12b"
 MODEL = "llama-3.1-8b-instant"
-# MODEL = "llama-3.3-70b-versatile"
+
+# Get API keys from environment variables with fallbacks
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "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")
+OPENBB_API_KEY = os.environ.get("OPENBB_API_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoX3Rva2VuIjoiUmc2aWFhdVExZ1dOcDUxWGlBUjRkYnVVUVllem5GR2t2S05EVWEybiIsImV4cCI6MTc2ODM4OTE0MX0.OdPqeDk8-U6b7XDyx42nClC3Mm_kmTwe77W1fQhksNU")
 
 llm = ChatGroq(
     temperature=0,
     model_name=MODEL,
-    api_key="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",
+    api_key=GROQ_API_KEY,
 )
-obb.obb.account.login(pat="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoX3Rva2VuIjoiUmc2aWFhdVExZ1dOcDUxWGlBUjRkYnVVUVllem5GR2t2S05EVWEybiIsImV4cCI6MTc2ODM4OTE0MX0.OdPqeDk8-U6b7XDyx42nClC3Mm_kmTwe77W1fQhksNU")
-obb.obb.user.preferences.output_type = "dataframe"
+
+try:
+    obb.obb.account.login(pat=OPENBB_API_KEY)
+    obb.obb.user.preferences.output_type = "dataframe"
+    print("OpenBB login successful")
+except Exception as e:
+    print(f"OpenBB login failed: {e}")
+    # Continue without OpenBB if login fails
 
 
 def ticker_extractor(state: AppState):
@@ -89,15 +96,21 @@ def price_analyst(state: AppState):
     Returns:
         A dictionary with the price analysis report.
     """
-    price_df = state["prices"]
-    weeks_4_50_percent, _, _ = calculate_50_percent(price_df, n_weeks=4)
-    weeks_12_50_percent, _, _ = calculate_50_percent(price_df, n_weeks=12)
-    weeks_26_50_percent, _, _ = calculate_50_percent(price_df, n_weeks=26)
+    try:
+        price_df = state["prices"]
+        
+        # Check if price data is empty
+        if price_df.empty:
+            return {"price_analyst_report": "I apologize, but I couldn't retrieve price data for analysis. This might be due to a temporary service issue."}
+        
+        weeks_4_50_percent, _, _ = calculate_50_percent(price_df, n_weeks=4)
+        weeks_12_50_percent, _, _ = calculate_50_percent(price_df, n_weeks=12)
+        weeks_26_50_percent, _, _ = calculate_50_percent(price_df, n_weeks=26)
 
-    money_supply_df = get_money_supply()
-    money_supply_text = str(money_supply_df["m2"])
+        money_supply_df = get_money_supply()
+        money_supply_text = str(money_supply_df["m2"]) if not money_supply_df.empty else "Data not available"
 
-    prompt = f"""You have extensive knowledge of the cryptocurrency market and historical data.
+        prompt = f"""You have extensive knowledge of the cryptocurrency market and historical data.
 Think step-by-step and focus on the technical indicators.
 Use the following weekly close price history and technical indicators for the particular currency:
 
@@ -117,8 +130,11 @@ What is the overall trend outlook? Explain your predictions in 1-3 sentences.
 When creating your answer, focus on answering the user query:
 {state["user_query"]}
 """
-    response = llm.invoke([HumanMessage(prompt)])
-    return {"price_analyst_report": response.content}
+        response = llm.invoke([HumanMessage(prompt)])
+        return {"price_analyst_report": response.content}
+    except Exception as e:
+        print(f"Error in price_analyst: {e}")
+        return {"price_analyst_report": "I apologize, but I encountered an error while analyzing price data. Please try again later."}
 
 
 def news_analyst(state: AppState):
@@ -130,13 +146,18 @@ def news_analyst(state: AppState):
     Returns:
         A dictionary with the news sentiment analysis report.
     """
+    try:
+        news_df = state["news"]
+        
+        # Check if news data is empty
+        if news_df.empty:
+            return {"news_analyst_report": "I apologize, but I couldn't retrieve news data for sentiment analysis. This might be due to a temporary service issue."}
+        
+        news_text = ""
+        for date, row in list(news_df.iterrows())[:20]:
+            news_text += f"{date}\n{row.title}\n{row.body}\n---\n"
 
-    news_df = state["news"]
-    news_text = ""
-    for date, row in list(news_df.iterrows())[:20]:
-        news_text += f"{date}\n{row.title}\n{row.body}\n---\n"
-
-    prompt = f"""Choose a combined sentiment that best represents these news articles:
+        prompt = f"""Choose a combined sentiment that best represents these news articles:
 
 ```
 {news_text}
@@ -154,8 +175,11 @@ Reply only with the sentiment and a short explanation (1-2 sentences) of why.
 When creating your answer, focus on answering the user query:
 {state["user_query"]}
 """
-    response = llm.invoke([HumanMessage(prompt)])
-    return {"news_analyst_report": response.content}
+        response = llm.invoke([HumanMessage(prompt)])
+        return {"news_analyst_report": response.content}
+    except Exception as e:
+        print(f"Error in news_analyst: {e}")
+        return {"news_analyst_report": "I apologize, but I encountered an error while analyzing news sentiment. Please try again later."}
 
 
 def financial_reporter(state: AppState):
