@@ -317,35 +317,88 @@ ZoraGPT is a revolutionary AI-powered chat assistant designed to be your intelli
     
     # Handle "Should I buy ZoraGPT?" question
     if "should i buy zoragpt" in user_query_lower or "should i buy zora" in user_query_lower:
-        zoragpt_response = """{"advice": "🚀 **ZoraGPT Analysis - Revolutionary AI on Base Network** 🚀
+        zoragpt_response = """{"advice": "🚀 **ZoraGPT Investment Analysis - The Future of AI + Blockchain** 🚀
 
-**What is ZoraGPT?**
-ZoraGPT is a cutting-edge AI chat assistant built on the Base network (Coinbase's L2 solution). It's not just another chatbot - it's a comprehensive financial advisor, blockchain assistant, and AI companion that leverages the power of decentralized technology.
+**🔥 WHY ZoraGPT is a GAME-CHANGER:**
 
-**Why ZoraGPT is Special:**
-• **Built on Base Network**: Leverages Coinbase's secure, fast, and low-cost L2 infrastructure
-• **AI-Powered Financial Analysis**: Provides real-time crypto insights, market analysis, and investment guidance
-• **Blockchain Integration**: Seamlessly interacts with Base network for transactions, balance checks, and DeFi operations
-• **Advanced AI Technology**: Uses state-of-the-art language models for intelligent conversations
-• **User-Friendly Interface**: Beautiful, intuitive chat interface with real-time responses
+**1. UNIQUE MARKET POSITION**
+ZoraGPT is the FIRST AI assistant built specifically for the Base network ecosystem. While there are many AI tools and many blockchain platforms, ZoraGPT is the ONLY one that combines:
+• Advanced AI with real-time financial analysis
+• Seamless Base network integration
+• Complete DeFi functionality
+• Professional-grade market insights
 
-**Market Potential:**
-The AI + Blockchain sector is experiencing explosive growth. With Base network's backing from Coinbase and the increasing demand for AI-powered financial tools, ZoraGPT represents a unique intersection of two booming markets.
+**2. MASSIVE MARKET OPPORTUNITY**
+• **AI Market**: Projected to reach $1.8 trillion by 2030 (growing 37% annually)
+• **DeFi Market**: Expected to hit $232 billion by 2030
+• **Base Network**: Coinbase's L2 with 100M+ potential users
+• **Combined Potential**: ZoraGPT sits at the intersection of 3 booming markets
 
-**Investment Considerations:**
-✅ **Strong Foundation**: Built on Base network with Coinbase's support
-✅ **Growing AI Market**: AI sector projected to reach $1.8 trillion by 2030
-✅ **DeFi Integration**: Seamless blockchain functionality
-✅ **User Adoption**: Increasing demand for AI financial assistants
-✅ **Technical Innovation**: Advanced AI with blockchain capabilities
+**3. STRONG FOUNDATION & BACKING**
+✅ **Built on Base Network**: Coinbase's trusted, secure, and fast L2 infrastructure
+✅ **Institutional Support**: Backed by Coinbase's ecosystem and resources
+✅ **Technical Excellence**: State-of-the-art AI models and blockchain integration
+✅ **User Experience**: Beautiful, intuitive interface that actually works
+✅ **Real Utility**: Not just hype - provides genuine value to users
 
-**Risk Factors:**
-⚠️ **Early Stage**: Project is in development phase
-⚠️ **Market Volatility**: Crypto markets are inherently volatile
-⚠️ **Competition**: Other AI projects may emerge
+**4. COMPETITIVE ADVANTAGES**
+• **First-Mover Advantage**: First AI assistant on Base network
+• **Network Effects**: More users = better AI = more users
+• **Data Advantage**: Access to real-time crypto and DeFi data
+• **Integration Depth**: Deep Base network integration vs. competitors
+• **Brand Recognition**: Strong positioning in AI + crypto space
 
-**Bottom Line:**
-ZoraGPT represents an innovative fusion of AI and blockchain technology on a robust, well-supported network. For investors interested in the future of AI-powered financial services and the Base ecosystem, it's worth keeping a close eye on this project's development and adoption metrics.
+**5. REVENUE POTENTIAL**
+• **Subscription Models**: Premium AI features and advanced analytics
+• **Transaction Fees**: Revenue from DeFi operations and trades
+• **Data Services**: Market insights and analytics for institutions
+• **Partnerships**: Integration fees from other Base ecosystem projects
+• **Token Economics**: Native token utility and governance
+
+**6. GROWTH CATALYSTS**
+🚀 **Base Network Growth**: As Base grows, ZoraGPT grows exponentially
+🚀 **AI Adoption**: Increasing demand for AI-powered financial tools
+🚀 **DeFi Expansion**: More DeFi protocols = more use cases
+🚀 **Institutional Adoption**: Professional traders and institutions
+🚀 **Global Expansion**: International markets and languages
+
+**7. RISK ASSESSMENT**
+⚠️ **Early Stage**: Higher risk, but higher potential returns
+⚠️ **Market Volatility**: Crypto markets are volatile (but this creates opportunities)
+⚠️ **Competition**: Other projects may emerge (but ZoraGPT has first-mover advantage)
+⚠️ **Regulatory**: Crypto regulations evolving (but Base network compliance helps)
+
+**8. INVESTMENT THESIS**
+**BULLISH CASE:**
+• ZoraGPT becomes the go-to AI assistant for Base network users
+• Captures 10% of Base network's 100M+ potential users
+• Generates $100M+ annual revenue from subscriptions and fees
+• Token value increases 50-100x from current levels
+
+**CONSERVATIVE CASE:**
+• Steady growth with Base network adoption
+• Captures 1% of market with solid revenue generation
+• Token value increases 10-20x from current levels
+
+**9. TIMING IS PERFECT**
+• **AI Revolution**: ChatGPT, Claude, and other AI tools have proven the market
+• **Crypto Recovery**: Market sentiment improving, institutional adoption increasing
+• **Base Network Momentum**: Growing rapidly with Coinbase's support
+• **DeFi Renaissance**: New protocols and use cases emerging daily
+
+**10. BOTTOM LINE**
+ZoraGPT represents a rare opportunity to invest in a project that combines:
+• **Proven Technology** (AI + Blockchain)
+• **Massive Market** (AI + Crypto + DeFi)
+• **Strong Backing** (Base network ecosystem)
+• **Real Utility** (Actual product that works)
+• **First-Mover Advantage** (Unique positioning)
+
+**🎯 INVESTMENT RECOMMENDATION:**
+For investors with a 2-5 year horizon who believe in the future of AI + blockchain, ZoraGPT represents a compelling opportunity. The combination of first-mover advantage, strong technical foundation, and massive market potential makes this a high-conviction investment.
+
+**💰 POSITION SIZING:**
+Consider allocating 5-15% of your crypto portfolio to ZoraGPT, depending on your risk tolerance and conviction level.
 
 *This analysis is for educational purposes. Always do your own research and consider your risk tolerance before making investment decisions.*"}"""
         
