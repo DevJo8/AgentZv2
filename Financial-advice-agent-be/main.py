@@ -248,7 +248,9 @@ def final_answer(state: AppState):
 
         If you do not know the answer to a question or if the query is unrelated to your expertise, humbly deny it and explain that you cannot provide an answer in that case. When providing advice, clearly communicate any risks, uncertainties, or potential downsides involved to help users make informed decisions. Always strive to answer the user's query in a clear, professional, and trustworthy manner.
         
-        
+        IMPORTANT: Always respond in the following JSON format:
+        {{"advice": "<your advice or disclaimer here>"}}
+        If you cannot answer, provide a disclaimer in the same JSON format.
         """
     else:
         print("hey we are here")
@@ -265,25 +267,39 @@ Refer to these reports, if available, to ensure your responses are well-informed
 If you do not know the answer to a question, if the query is unrelated to your expertise, or if there is insufficient information to provide an informed response, humbly deny it and explain why. When giving advice, always clearly communicate any risks, uncertainties, or potential downsides involved to help users make informed decisions. Strive to deliver clear, professional, and trustworthy responses to every query.
 
 IMPORTANT: Always respond in the following JSON format:
-{"advice": "<your advice or disclaimer here>"}
+{{"advice": "<your advice or disclaimer here>"}}
 If you cannot answer, provide a disclaimer in the same JSON format.
         """
 
     sys_message = SystemMessage(content=prompt)
 
-    result = [llm.invoke([sys_message] + [HumanMessage(state["user_query"])])]
-
-    # Try to parse the output as JSON, fallback to raw content if failed
-    import json
-    advice = None
     try:
-        content = result[-1].content
-        advice_json = json.loads(content)
-        advice = advice_json.get("advice", content)
-    except Exception:
-        advice = result[-1].content
-
-    return {"final_response": [type("Obj", (), {"content": advice})()]}
+        result = [llm.invoke([sys_message] + [HumanMessage(state["user_query"])])]
+        
+        # Try to parse the output as JSON, fallback to raw content if failed
+        import json
+        advice = None
+        try:
+            content = result[-1].content
+            advice_json = json.loads(content)
+            advice = advice_json.get("advice", content)
+        except Exception as e:
+            print(f"JSON parsing failed: {e}")
+            print(f"Raw content: {result[-1].content}")
+            # If JSON parsing fails, wrap the content in a proper JSON structure
+            advice = result[-1].content
+            
+        # Ensure we always return a valid JSON structure
+        if not advice:
+            advice = "I apologize, but I encountered an error while processing your request. Please try again or rephrase your question."
+            
+        return {"final_response": [type("Obj", (), {"content": advice})()]}
+        
+    except Exception as e:
+        print(f"Error in final_answer: {e}")
+        # Return a fallback response if everything fails
+        fallback_response = "I apologize, but I encountered an error while processing your request. Please try again or rephrase your question."
+        return {"final_response": [type("Obj", (), {"content": fallback_response})()]}
 
 
 graph.add_node("ticker_extractor", ticker_extractor)
@@ -339,32 +355,46 @@ def analyze():
         # Run the LangGraph workflow
         state = graph_app.invoke({"user_query": user_query})
 
-        # Prepare response data
-        response_data = {"final_response": state["final_response"][-1].content}
+        # Prepare response data with better error handling
+        try:
+            final_response_content = state["final_response"][-1].content
+        except (KeyError, IndexError, AttributeError) as e:
+            print(f"Error accessing final_response: {e}")
+            final_response_content = "I apologize, but I encountered an error while processing your request. Please try again or rephrase your question."
+        
+        response_data = {"final_response": final_response_content}
 
         if ticker_check(state) == "yes":
-            reports = {
-                "price_analyst_report": state.get("price_analyst_report", ""),
-                "news_analyst_report": state.get("news_analyst_report", ""),
-                "final_report": (
-                    {
-                        "action": state["final_report"].action,
-                        "score": state["final_report"].score,
-                        "trend": state["final_report"].trend,
-                        "sentiment": state["final_report"].sentiment,
-                        "price_predictions": state["final_report"].price_predictions,
-                        "summary": state["final_report"].summary,
-                    }
-                    if state.get("final_report")
-                    else None
-                ),
-            }
-            response_data.update(reports)
+            try:
+                reports = {
+                    "price_analyst_report": state.get("price_analyst_report", ""),
+                    "news_analyst_report": state.get("news_analyst_report", ""),
+                    "final_report": (
+                        {
+                            "action": state["final_report"].action,
+                            "score": state["final_report"].score,
+                            "trend": state["final_report"].trend,
+                            "sentiment": state["final_report"].sentiment,
+                            "price_predictions": state["final_report"].price_predictions,
+                            "summary": state["final_report"].summary,
+                        }
+                        if state.get("final_report")
+                        else None
+                    ),
+                }
+                response_data.update(reports)
+            except Exception as e:
+                print(f"Error processing reports: {e}")
+                # Continue without reports if there's an error
 
         return jsonify(response_data)
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        print(f"Error in analyze endpoint: {e}")
+        return jsonify({
+            "error": "Internal server error",
+            "final_response": "I apologize, but I encountered an error while processing your request. Please try again or rephrase your question."
+        }), 500
 
 
 if __name__ == "__main__":
