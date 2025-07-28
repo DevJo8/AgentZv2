@@ -310,9 +310,11 @@ Thought: I now know the final answer
 Final Answer: the final answer to the original input question
 
 Previous conversation history:
-${chat_history}
+{chat_history}
 
-Question: ${input}
+Question: {input}
+
+{agent_scratchpad}
 `);
 
     const agent = await createReactAgent({
@@ -329,7 +331,8 @@ Question: ${input}
     });
 
     const result = await agentExecutor.invoke({
-      input: customPrompt,
+      input: input,
+      chat_history: chat_history,
     });
 
     console.log("Final Result:", result.output);
