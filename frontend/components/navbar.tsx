@@ -9,13 +9,13 @@ import { useState } from 'react'
 
 export default function Navbar() {
   const { address, isConnected } = useAccount()
-  const [copied, setCopied] = useState(false)
+  const [caCopied, setCaCopied] = useState(false)
 
-  const copyToClipboard = async (text: string) => {
+  const copyCA = async () => {
     try {
-      await navigator.clipboard.writeText(text)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      await navigator.clipboard.writeText("19YEUWUWUUWUWU")
+      setCaCopied(true)
+      setTimeout(() => setCaCopied(false), 2000)
     } catch (err) {
       console.error('Failed to copy: ', err)
     }
@@ -44,49 +44,49 @@ export default function Navbar() {
               Community
             </Link>
             
-            {isConnected && address && (
-              <div className="flex items-center gap-2 bg-black/20 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10">
-                <div className="text-xs text-gray-300">Contract:</div>
-                <div className="flex items-center gap-1">
-                  <span className="text-xs font-mono text-blue-300">
-                    {address.slice(0, 6)}...{address.slice(-4)}
-                  </span>
-                  <button
-                    onClick={() => copyToClipboard(address)}
-                    className="p-1 hover:bg-white/10 rounded transition-colors"
-                    title="Copy contract address"
-                  >
-                    {copied ? (
-                      <Check className="h-3 w-3 text-green-400" />
-                    ) : (
-                      <Copy className="h-3 w-3 text-gray-400" />
-                    )}
-                  </button>
-                </div>
+            {/* CA Display */}
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-2 border border-white/20">
+              <div className="text-xs text-gray-300 font-medium">CA :</div>
+              <div className="flex items-center gap-1">
+                <span className="text-xs font-mono text-blue-300 font-semibold">
+                  19YEUWUWUUWUWU
+                </span>
+                <button
+                  onClick={copyCA}
+                  className="p-1 hover:bg-white/10 rounded transition-colors"
+                  title="Copy CA"
+                >
+                  {caCopied ? (
+                    <Check className="h-3 w-3 text-green-400" />
+                  ) : (
+                    <Copy className="h-3 w-3 text-gray-400" />
+                  )}
+                </button>
               </div>
-            )}
+            </div>
             
             <ConnectButton />
           </div>
 
           <div className="md:hidden flex items-center gap-2">
-            {isConnected && address && (
-              <div className="flex items-center gap-1 bg-black/20 backdrop-blur-sm rounded px-2 py-1 border border-white/10">
-                <span className="text-xs font-mono text-blue-300">
-                  {address.slice(0, 4)}...{address.slice(-4)}
-                </span>
-                <button
-                  onClick={() => copyToClipboard(address)}
-                  className="p-1 hover:bg-white/10 rounded transition-colors"
-                >
-                  {copied ? (
-                    <Check className="h-2 w-2 text-green-400" />
-                  ) : (
-                    <Copy className="h-2 w-2 text-gray-400" />
-                  )}
-                </button>
-              </div>
-            )}
+            {/* CA Display Mobile */}
+            <div className="flex items-center gap-1 bg-white/10 backdrop-blur-sm rounded-full px-2 py-1 border border-white/20">
+              <span className="text-xs text-gray-300 font-medium">CA:</span>
+              <span className="text-xs font-mono text-blue-300 font-semibold">
+                19YEUWUWUUWUWU
+              </span>
+              <button
+                onClick={copyCA}
+                className="p-1 hover:bg-white/10 rounded transition-colors"
+              >
+                {caCopied ? (
+                  <Check className="h-2 w-2 text-green-400" />
+                ) : (
+                  <Copy className="h-2 w-2 text-gray-400" />
+                )}
+              </button>
+            </div>
+            
             <ConnectButton />
           </div>
         </div>
