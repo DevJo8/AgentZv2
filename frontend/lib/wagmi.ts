@@ -3,7 +3,7 @@ import { base } from 'wagmi/chains'
 
 export const config = getDefaultConfig({
   appName: 'ZoraGPT',
-  projectId: 'YOUR_WALLETCONNECT_PROJECT_ID', // Ganti dengan project ID Anda
+  projectId: '00000000000000000000000000000000', // Temporary placeholder
   chains: [base],
   ssr: true,
 }) 
