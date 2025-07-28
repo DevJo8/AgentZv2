@@ -386,6 +386,8 @@ Consider allocating 5-15% of your crypto portfolio to ZoraGPT, depending on your
         
         return {"final_response": [type("Obj", (), {"content": zoragpt_response})()]}
     
+
+    
     if ticker_check(state) == "no":
         print("I am here at no")
         prompt = f"""You are a knowledgeable financial information provider with expertise in cryptocurrency markets, investments, and financial analysis. Your role is to provide educational information, market analysis, and insights to help users make informed decisions.
